@@ -7,75 +7,62 @@
     console.log(carta.texto) // imprime o texto da carta. Exemplo: "K♦️" (indica "K" de ouros)
     console.log(carta.valor) // imprime o valor da carta (um número). Exemplo: 10 (dado que "K" vale 10)
  * 
- * 
- * 
  */
-let novaCarta = () => {
-   function nome () {
-      return comprarCarta().texto
-   }
-   function pontuacao () {
-      return comprarCarta().valor
-   }
-   return [nome(), pontuacao()]
-}
-
-
-console.log(novaCarta())
 
 // const blackjack = () => {
 //    console.log("Boas vindas ao jogo de Blackjack!")
-//    let usuario
-//    let computador
+//    let usuario = []
+//    let computador = []
 //    if (confirm("Deseja iniciar uma rodada?")) {
-//       function rodadaUsuario() {
-//          let primeiraCarta = comprarCarta()
-//          let segundaCarta = comprarCarta()
-//          usuario = {
-//             cartaUm: {
-//                nome: primeiraCarta.texto,
-//                pontuacao: primeiraCarta.valor               
-//             },
-//             cartaDois: {
-//                nome: segundaCarta.texto,
-//                pontuacao: segundaCarta.valor
-//             }
-//          }
-//          console.log(`Usuário - cartas: ${usuario.cartaUm.nome, usuario.cartaDois.nome} - pontuação ${usuario.cartaUm.pontuacao+usuario.cartaDois.pontuacao}`) 
-//        }
-//       function rodadaComputador() {
-//          let primeiraCarta = comprarCarta()
-//          let segundaCarta = comprarCarta()
-//          computador = {
-//             cartaUm: {
-//                nome: primeiraCarta.texto,
-//                pontuacao: primeiraCarta.valor               
-//             },
-//             cartaDois: {
-//                nome: segundaCarta.texto,
-//                pontuacao: segundaCarta.valor
-//             }
-//          }
-//        }
-       
+//       function rodadas() {
+//          usuario.push(comprarCarta())
+//          usuario.push(comprarCarta())
 
-//        rodadaComputador()
-//        rodadaUsuario()
-//        console.log(`Usuário - cartas: ${usuario.cartaUm.nome, usuario.cartaDois.nome} - pontuação ${usuario.cartaUm.pontuacao+usuario.cartaDois.pontuacao}`)
-   
+//          computador.push(comprarCarta())
+//          computador.push(comprarCarta())
+//          console.log(`Usuário - cartas: ${usuario[0].texto}${usuario[1].texto} - pontuação ${usuario[0].valor + usuario[1].valor}`)
+//          console.log(`Computador - cartas: ${computador[0].texto}${computador[1].texto} - pontuação ${computador[0].valor + computador[1].valor}`)
+//          return usuario, computador
 
-//    } else {
-//    console.log("O jogo acabou")
-//        }
+//       }
+//       function resultadoRodada() {
+//          if (usuario[0].valor + usuario[1].valor > computador[0].valor + computador[1].valor) {
+//             console.log("O usuário ganhou")
+//          } else if (usuario[0].valor + usuario[1].valor < computador[0].valor + computador[1].valor) {
+//             console.log("O computador ganhou")
+//          } else {
+//             console.log("Empate!")
+//          }
 //       }
 
+//       rodadas()
+//       resultadoRodada()
 
 
+//    }
+
+//    else {
+//       console.log("O jogo acabou")
+//    }
+// }
 // blackjack()
 
 
+let mao = [1,2,3,4,5,6]
 
 
-// for (mao = 0; mao <= 2; mao++) {
-//    maoUsuario = [comprarCarta()]
-// }
+
+let somaMao = 0 
+for (i=0; i < mao.length; i++) {
+   somaMao += mao[i]
+}
+
+console.log(somaMao)
+
+
+
+
+
+
+
+
