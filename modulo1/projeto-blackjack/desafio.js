@@ -99,21 +99,21 @@ const blackjack = () => {
 
          console.log(`Usuário - cartas: ${mao(usuario)} - pontuação ${somaUsuario}`)
          console.log(`Computador - cartas: ${mao(computador)} - pontuação ${somaComputador}`)
-         
 
-         if (somaUsuario > somaComputador) {
+
+         if (somaComputador > 21 || (somaComputador < 21 && somaComputador < somaUsuario)) {
             console.log("O usuário ganhou")
-         } else if (somaUsuario < somaComputador) {
+         } else if (somaUsuario > 21 || (somaUsuario < 21 && somaComputador > somaUsuario)) {
             console.log("O computador ganhou")
-         } else {
+         } else if (somaComputador == somaUsuario) {
             console.log("Empate!")
          }
-      
+
       }
-      
+
 
       rodadas()
-    
+
 
 
    }
