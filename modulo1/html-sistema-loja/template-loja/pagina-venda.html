@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Funcionários</title>
+    <title>Página de venda</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <header>
         <p class="titulo">Labenu Imports</p>
     </header>
@@ -21,16 +22,19 @@
         <a href="/template-loja/historico-venda.html">Histórico de Venda</a>
     </nav>
 
-    <h2 class="texto">Funcionários</h2>
-    <!-- Crie uma lista de funcionários usando as tags que você aprendeu hoje abaixo \/ -->
-    <table>
-        <ul>
-            <li>Ronaldo</li>
-            <li>Gabriel</li>
-            <li>Ricardo</li>
-        </ul>
-    </table>
+    <h2 class="texto">Página de Venda</h2>
+
+    <form action="/template-loja/pagina-venda.html">
+        <label for="produtos">Coloque cada produto: </label>
+        <input type="text" name="produtos" id="produtos">
+        <br>
+        <label for="opcaoPagamento">Coloque sua opção de pagamento: </label>
+        <input type="text" name="opcaoPagamento" id="opcaoPagamento">
+        <br>
+        <button type="submit">Concluir</button>
+    </form>
+
     <p class="rodape">Siga-nos nas redes sociais!</p>
-        
+    
 </body>
 </html>
