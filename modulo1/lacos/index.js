@@ -106,11 +106,12 @@ brincadeira(15)
 //2- 
 let numeroAleatorio = Math.floor(Math.random() * 100) + 1
 console.log(numeroAleatorio)
-
+let tentativas = 1
 function brincadeiraDois(numeroSurpresa) {
     let numeroDois = Number(prompt("Escolha um número"))
     console.log("Vamos jogar!")
     for (numeroDois; numeroDois !== numeroSurpresa; numeroDois = Number(prompt("Escolha outro número"))) {
+        tentativas++
         if (numeroDois > numeroSurpresa) {
             console.log("Errou. O número escolhido é maior")
         } else if (numeroDois < numeroSurpresa) {
@@ -118,6 +119,7 @@ function brincadeiraDois(numeroSurpresa) {
         }
     }
     console.log("Acertou!")
+    console.log(`O número de tentativas foi ${tentativas}`)
 }
 
 brincadeiraDois(numeroAleatorio)   
