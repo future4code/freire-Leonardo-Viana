@@ -52,6 +52,10 @@ div img {
 
 }
 
+.botao-amarelo:active {
+    background-color: #c97200;
+}
+
 .botao-amarelo:hover {
     background-color: #c44f00;
 }
@@ -133,6 +137,10 @@ td button {
     color: black;
 }
 
+td button:active {
+    background-color: #be9c00;
+}
+
 .container-do-search {
     margin-top: 20px;
     height: 100px;
@@ -147,6 +155,11 @@ td button {
     border-radius: 5px;
     font-size: 10px;
     color: black;
+}
+
+#back-button:active {
+    color: white;
+    background-color: #423400
 }
 
 #back-button:hover {
