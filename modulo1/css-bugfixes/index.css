@@ -189,3 +189,7 @@ td>img {
     height: 70px;
 }
 
+.container-do-search>button:hover {
+    color: gray;
+    background-color: grey;
+}
