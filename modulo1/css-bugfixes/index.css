@@ -155,3 +155,8 @@ td button {
 td {
     text-align: center;
 }
+
+td>img {
+    width: 70px;
+    height: 70px;
+}
