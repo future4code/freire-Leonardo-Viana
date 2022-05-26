@@ -31,6 +31,7 @@ img {
 
 div>p:first-child {
     display: inline;
+    position: ;
 }
 
 div img {
@@ -47,7 +48,7 @@ div img {
     position: absolute;
     left: 43%;
     bottom: 78%;
-    
+
 
 }
 
@@ -76,6 +77,12 @@ div img {
     color: white;
 }
 
+#container-de-descricao>p {
+    display: block;
+    padding: 5px 0px 0px 0px; 
+  
+}
+
 #container-de-descricao>ol {
     padding: 15px 0px;
 }
@@ -83,7 +90,7 @@ div img {
 #container-para-comprar {
     background-color: #e7eb90;
     position: relative;
-    
+
 }
 
 #container-para-comprar>p {
