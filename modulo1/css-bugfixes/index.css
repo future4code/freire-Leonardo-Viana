@@ -75,21 +75,30 @@ div img {
 #container-de-descricao {
     background-color: #2274a5;
     color: white;
+    position:static;
+    text-align: center;
+    
 }
 
 #container-de-descricao>p {
-    display: block;
+    display:inline-block;
     padding: 5px 0px 0px 0px; 
+    width: 180px;
+    
+
+    
   
 }
 
 #container-de-descricao>ol {
     padding: 15px 0px;
+    
 }
 
 #container-para-comprar {
     background-color: #e7eb90;
     position: relative;
+    
 
 }
 
