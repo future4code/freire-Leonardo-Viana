@@ -132,6 +132,11 @@ div:last-child {
 
 table {
     width: 60%;
+    position: fixed;
+    top: 20%;
+    right: 17%;
+    
+   
 }
 
 td button {
@@ -160,7 +165,10 @@ td button:active {
     border-radius: 5px;
     font-size: 10px;
     color: black;
-}
+    position: fixed;
+    top: 60%;
+    right: 45%;
+} 
 
 #back-button:active {
     color: white;
