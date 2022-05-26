@@ -91,23 +91,24 @@ div img {
 }
 
 #container-de-descricao>p {
-    display:inline-block;
+    display:block;
     padding: 5px 0px 0px 0px; 
-    width: 180px;
-    
-
-    
-  
+    margin-left: auto;
+    margin-right: auto;
+    width: 230px 
 }
 
 #container-de-descricao>ol {
     padding: 15px 0px;
+    display: inline-block
+
     
 }
 
 #container-para-comprar {
     background-color: #e7eb90;
     position: relative;
+    text-align: center;
     
 
 }
