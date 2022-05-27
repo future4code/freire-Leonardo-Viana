@@ -1,0 +1,81 @@
+.rodape {
+    position: absolute;
+    bottom: 0;
+    background-color: black;
+    color:white;
+    display:block; 
+    font-size: x-large;
+    
+}
+
+.titulo {
+    color:white;
+    background-color: aqua;
+    display: inline;
+    font-size: 50px;
+}
+
+.texto {
+    font-size: x-large;
+}
+
+.tabela {
+    margin: 0;
+    padding: 0;
+    border-width: medium;
+    border-color: black;
+    border-style: solid;
+}
+
+td {
+    border-width: medium;
+    border-color: black;
+    border-style: solid;
+    margin: 0;
+    padding: 0;
+}
+
+.rodapeTabela {
+    position: absolute;
+    bottom:0;
+    background-color: black;
+    color:white;
+    display:block; 
+    font-size: x-large;
+    
+}
+
+img {
+    max-width:150px;
+    max-height:100px;
+    width: auto;
+    height: auto;
+}
+
+form {
+    border-width:initial;
+    border-color: black;
+    border-style: solid;
+    margin: 0px;
+    padding: 10px 0px 10px 10px;
+    box-sizing: border-box;
+
+}
+
+li {
+    border-top: white;
+    border-left: white;
+    border-right: white;
+    border-bottom: black;
+    border-style: solid;
+    display: inline;
+}
+
+input {
+    margin: 2px 0px;
+}
+
+a {
+    display: block;
+    padding: 3px;
+}
