@@ -1,0 +1,13 @@
+* {
+    background-color: black;
+    color: white;
+}
+
+.blackjack-lite div {
+    font-size: x-large;
+}
+
+.blackjack img {
+    width: 900px;
+    height: 1000px;
+}
