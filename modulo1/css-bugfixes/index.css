@@ -1,0 +1,195 @@
+/** 
+  *
+  *  ESTILOS GERAIS 
+  *
+  **/
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto';
+}
+
+h2 {
+    background-color: #fe7e02;
+    padding: 10px 5px 10px 5px;
+    color: white;
+    text-align: center;
+}
+
+input {
+    height: 20px;
+    width: 500px;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-width: 5px;   
+}
+
+button:focus {
+    color: white;
+}
+
+img {
+    width: 100px;
+}
+
+div>p:first-child {
+    display: inline;
+    position: ;
+}
+
+div img {
+    background: black;
+}
+
+.botao-amarelo {
+    background-color: #ffaf43;
+    width: 250px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 20px;
+    color: white;
+    position: absolute;
+    left: 43%;
+    bottom: 78%;
+
+
+}
+
+.botao-amarelo:active {
+    background-color: #c97200;
+}
+
+.botao-amarelo:hover {
+    background-color: #c44f00;
+}
+
+.container {
+    height: 500px;
+    text-align: center;
+}
+
+.icone {
+    height: 15px;
+    width: 15px;
+}
+
+
+/** 
+  *
+  *  ESTILOS HOME 
+  *
+  **/
+
+#container-de-descricao {
+    background-color: #2274a5;
+    color: white;
+    position:static;
+    text-align: center;
+    
+}
+
+#container-de-descricao>p {
+    display:block;
+    padding: 5px 0px 0px 0px; 
+    margin-left: auto;
+    margin-right: auto;
+    width: 230px 
+}
+
+#container-de-descricao>ol {
+    padding: 15px 0px;
+    display: inline-block
+
+    
+}
+
+#container-para-comprar {
+    background-color: #e7eb90;
+    position: relative;
+    text-align: center;
+    
+
+}
+
+#container-para-comprar>p {
+    color: #c44f00;
+    padding: 100px 0;
+    font-size: 60px;
+}
+
+
+/**
+  *
+  *  ESTILOS COMPRAR 
+  *
+  **/
+
+div:nth-child(2),
+div:last-child {
+    text-align: center;
+}
+
+table {
+    width: 60%;
+    position: fixed;
+    top: 20%;
+    right: 17%;
+    
+   
+}
+
+td button {
+    background-color: #fadf63;
+    width: 150px;
+    height: 30px;
+    border-radius: 5px;
+    color: black;
+}
+
+td button:active {
+    background-color: #be9c00;
+}
+
+.container-do-search {
+    margin-top: 20px;
+    height: 100px;
+}
+
+
+#back-button {
+    background-color: white;
+    width: 100px;
+    height: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 10px;
+    color: black;
+    position: fixed;
+    top: 60%;
+    right: 45%;
+} 
+
+#back-button:active {
+    color: white;
+    background-color: #423400
+}
+
+#back-button:hover {
+    background-color: #635a3d
+}
+
+td {
+    text-align: center;
+}
+
+td>img {
+    width: 70px;
+    height: 70px;
+}
+
+.container-do-search>button:hover {
+    color: gray;
+    background-color: grey;
+}
