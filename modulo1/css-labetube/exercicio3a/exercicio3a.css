@@ -1,0 +1,71 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    font-size: 10px;
+    color: white;
+}
+
+.green-background {
+    background-color: green;
+}
+
+.yellow-background {
+    background-color: yellow;
+}
+
+.pink-background {
+    background-color: fuchsia;
+}
+
+.blue-background {
+    background-color: blue;
+}
+
+.red-background {
+    background-color: red;
+}
+
+.lightgreen-background {
+    background-color: lightgreen;
+}
+
+.purple-background {
+    background-color: purple;
+}
+
+#main-container {
+    display: grid;
+    grid-template-rows: 5vh 60vh 30vh 5vh;
+
+}
+
+#top-container {
+    display: grid;
+    grid-template-columns: 25vw 75vw;
+}
+
+#middle-container {
+    display: grid;
+    grid-template-columns: 50vw 25vw 25vw;
+    grid-template-rows: 15vh 15vh;
+    justify-content: stretch;
+    align-items: stretch;
+}
+
+#content2 {
+    display: grid;
+    grid-template-columns: 50vw 25vw 25vw;
+    grid-template-rows: 30vh;
+    align-items: stretch;
+}
+
+#vertical-middle-container {
+    display: grid;
+    grid-template-rows: 15vh 15vh;
+}
+
+div {
+    display: grid;
+}
