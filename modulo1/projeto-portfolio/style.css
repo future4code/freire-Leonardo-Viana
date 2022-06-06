@@ -1,0 +1,151 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+div img {
+    width: 200px;
+    height: 340px;
+    margin: 20px;
+}
+
+.aba {
+    display: inline;
+    margin: 10px 150px;
+    position: sticky;
+    top: 0;
+    font-size: x-large;
+    font-family: cursive;
+}
+
+.textura-fundo {
+    background-color: rgb(117, 117, 117);
+    display: block;
+    position: absolute;
+    top: 18%;
+    right: 0;
+    height: 55%;
+    width: 100%;
+}
+
+.textura-fundo-rodape {
+    background-color: rgb(66, 66, 66);
+    display: block;
+    position: absolute;
+    top: 73%;
+    width: 100%;
+    right: 0;
+    height: 30%;
+}
+
+.textura-fundo-rodape>p {
+    position: relative;
+    display: inline;
+    left: 13%;
+}
+
+.textura-fundo-rodape a {
+    position: relative;
+    color: white;
+    left: 15%;
+    text-align: left;
+}
+
+body {
+    background-color: rgb(168, 167, 167);
+}
+
+div {
+    font-size: xx-large;
+    font-family: monospace;
+    margin: 10px 0px 0px 0px;
+    position: absolute;
+    top: 11%;
+    right: 60%;
+    text-align: left;
+}
+
+.topicos {
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    width: 400px;
+    text-align: left;
+
+}
+
+.nome {
+    font-weight: bold;
+}
+
+.resumo img {
+    position: absolute;
+    width: 200px;
+    height: 340px;
+    margin: 40px;
+    top: 10%;
+    left: 5%;
+}
+
+.parte-um-resumo {
+    position: absolute;
+    top: 15%;
+    left: 25%;
+    width: 500px;
+    font-family: serif;
+    font-size: x-large;
+}
+
+.parte-dois-resumo {
+    font-family: serif;
+    font-size: x-large;
+    position: absolute;
+    top: 15%;
+    left: 60%;
+    width: 600px;
+}
+
+.projetos {
+    position: absolute;
+    margin: 30px;
+}
+
+.projetos>p {
+    font-size: x-large
+}
+
+.contatos p {
+    position: ;
+    left: 100%;
+}
+
+.contatos {
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    font-size: xx-large;
+}
+
+.formulario {
+    position: absolute;
+    text-align: left;
+    font-size: x-large;
+    top: 27%;
+    left: 20%;
+    border: 0;
+    background-color: rgb(168, 168, 168);
+}
+
+.formulario input {
+    background-color: rgb(214, 213, 213);
+}
+
+.formulario textarea {
+    background-color: rgb(214, 213, 213);
+}
+
+button {
+    position: absolute;
+    top: 44%;
+    left: 31%;
+}
