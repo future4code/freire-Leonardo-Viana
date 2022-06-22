@@ -14,17 +14,19 @@ padding: 30px;
 
 export default class App extends React.Component {
   state = {
-    users: [],
     inputUser: "",
-    inputEmail:""
+    inputEmail: "",
+    tela: true
   }
 
+
+
   onChangeUser = (event) => {
-    this.setState({inputUser: event.target.value})
+    this.setState({ inputUser: event.target.value })
   }
 
   onChangeEmail = (event) => {
-    this.setState({inputEmail: event.target.value})
+    this.setState({ inputEmail: event.target.value })
   }
 
   createUser = () => {
@@ -33,67 +35,61 @@ export default class App extends React.Component {
       email: this.state.inputEmail
     }
 
-    axios.post('https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users', body, 
-    {headers:{
-      Authorization: "leonardo-almeida-freire"     
-    }}).then((reponse) => {
-      console.log(reponse.data)
-      this.getAllUsers()
-      alert("")     
-    }).catch((error) => {
-      console.log(error.message)
-      alert("Você concluiu seu cadastro.")
-    })
+    axios.post('https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users', body,
+      {
+        headers: {
+          Authorization: "leonardo-almeida-freire"
+        }
+      }).then((reponse) => {
+        alert("Usuário cadastrado com sucesso!")
+        this.setState({ inputUser: "", inputEmail: "" })
+      }).catch((error) => {
+        alert(error.response.data.message)
+      })
   }
+
 
   deleteUser = () => {
     axios.delete()
-
   }
 
 
-
-  getAllUsers = () => {
-    axios.get('https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users',
-     {headers:{
-      Authorization: "leonardo-almeida-freire"
-    }}).then((response) => {
-      this.setState({users: response.data})
-    }).cath((error) => {
-      console.log(error.message)
-    })
+  proximaTela = () => {
+    this.setState({ tela: false })
   }
 
-  alerta = () => {
-    return alert("Você concluiu seu cadastro.")
+  telaAnterior = () => {
+    this.setState({ tela: true })
   }
 
-  cadastro = () => {
-    this.createUser()
-    this.getAllUsers()
-    this.alerta()    
+  trocarTela = () => {
+    switch (this.state.tela) {
+      case true:
+        return <Cadastro
+          user={this.state.inputUser}
+          changeUser={this.onChangeUser}
+          email={this.state.inputEmail}
+          changeEmail={this.onChangeEmail}
+          enviar={this.createUser}
+          proxima={this.proximaTela}
+        />
+      case false:
+        return <Lista
+          lista={this.state.users}
+          voltar={this.telaAnterior}
+        />
+      default:
+        return <div>Página não encontrada.</div>
+    }
   }
 
+  render() {
 
-
-
-  render(){
-    
-    return(
+    return (
       <Corpo>
-        <Cadastro
-     user={this.state.inputUser}
-     changeUser={this.onChangeUser}
-     email={this.state.inputEmail}
-     changeEmail={this.onChangeEmail}
-     enviar={this.cadastro}     
-     />      
-     <Lista
-     lista={this.state.users}
-     />
-    
+        {this.trocarTela()}
       </Corpo>
-        
+
     )
   }
 }

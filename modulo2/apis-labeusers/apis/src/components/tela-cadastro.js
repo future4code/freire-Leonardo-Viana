@@ -16,7 +16,11 @@ export default class Cadastro extends React.Component {
                <h1>Cadastro</h1>
                <input value={this.props.user} onChange={this.props.changeUser} placeholder='Nome'></input>
                <input value={this.props.email} onChange={this.props.changeEmail} placeholder='Email'></input>
-               <button onClick={this.props.enviar}>Enviar</button>               
+               <button onClick={this.props.enviar}>Cadastrar</button>
+               <br></br>
+               <br></br>
+               <br></br>
+               <button onClick={this.props.proxima}>Lista de Usuários</button>               
             </Corpo>
 
         )
