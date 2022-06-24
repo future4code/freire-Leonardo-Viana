@@ -4,30 +4,10 @@ import axios from 'axios'
 
 export default class Lista extends React.Component {
     state = {
-        usuarios: [],
-        estilos: []
+        detalhes: []
     }
 
-    componentDidMount() {
-        this.getAllUsers()
-    }
-
-    getAllUsers = () => {
-        axios.get("https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists", {
-            headers: {
-                Authorization: "leonardo-almeida-freire"
-            }
-        }).then((response) => {
-            this.setState({ usuarios: response.data.result.list })
-        })
-            .catch((err) => {
-                alert("Ocorreu um problema, tente novamente")
-            })
-    }
-
-
-
-    deletUser = (id) => {
+    deletePlaylist = (id) => {
         const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}`
         axios.delete(url, {
             headers: {
@@ -35,8 +15,26 @@ export default class Lista extends React.Component {
             }
         })
             .then((res) => {
-                alert("Usuário(a) deletado(a) com sucesso!")
-                this.getAllUsers()
+                alert("Playlist deletada com sucesso!")
+                return this.props.atualiza
+            })
+            .catch((err) => {
+                alert("Ocorreu um erro, tente novamente")
+            })
+    }
+
+
+    getPlaylistTracks = (id) => {
+        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}/tracks`
+        axios.get(url, {
+            headers: {
+                Authorization: "leonardo-almeida-freire"
+            }
+        })
+            .then((res) => {
+                alert("deu bom")              
+               this.setState({detalhes: res.data.result.tracks})
+               
             })
             .catch((err) => {
                 alert("Ocorreu um erro, tente novamente")
@@ -44,25 +42,42 @@ export default class Lista extends React.Component {
     }
 
     
+    clicar = (x) => {
+        this.getPlaylistTracks(x)        
+        console.log(this.state.detalhes)
+        return (
+        <div>
+            <h3>{this.state.detalhes.artist}</h3>
+            <p>{this.state.detalhes.name}</p>
+        </div>
+        )}
+
 
     render() {
-        console.log(this.state.usuarios)
         
-         
-        const listaUsuarios = this.state.usuarios.map((user) => {
+        const listaDeMusica = this.props.playlist.map((user) => {
             return (
                 <div key={user.id}>
-                    {user.name}
-                    <button onClick={() => this.deletUser(user.id)}>Apagar</button>
+                    <button onClick={() => (this.clicar(user.id))}>                       
+                        <div>
+                            {user.name}
+                        </div>                        
+                    </button>
+                    <div>
+            <h3>{this.state.detalhes.artist}</h3>
+            <p>{this.state.detalhes.name}TESTE</p>
+        </div>
+                    <button onClick={() => (this.deletePlaylist(user.id))}>Apagar</button>
+
                 </div>
             )
         })
-       
+
 
         return (
             <div>
-                <h2>Lista de Usuários</h2>
-                {listaUsuarios}
+                <h2>Playlists</h2>
+                {listaDeMusica}
                 <br></br>
                 <br></br>
                 <button onClick={this.props.voltar}>Voltar</button>
