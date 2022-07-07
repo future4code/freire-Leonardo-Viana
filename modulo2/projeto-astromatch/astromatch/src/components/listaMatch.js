@@ -2,9 +2,19 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
 
+
+const Fundo = styled.div`
+height: 48vh;
+background-color: yellow;
+overflow: auto;
+
+`
 const Layout = styled.div`
 display: flex;
 flex-direction: row;
+/* background-color: aliceblue; */
+height: 6vh;
+
 span{
     margin: 20px;
     font-size: large;
@@ -13,7 +23,6 @@ span{
 
 const Imagem = styled.div`
 margin: 10px;
-
 img{
     height: 40px;
     width: 40px;
@@ -22,6 +31,7 @@ img{
 `
 
 const Bloco = styled.div`
+height: 6vh;
 display: flex;
 flex-direction: row;
 align-items: center;
@@ -56,7 +66,7 @@ const Lista = (props) => {
           })
       }   
     
-    const listaFormatada = lista.map((match) => {
+    const listaFormatada = lista.map((match) => {        
         return <Layout>
             <Bloco>
                    <Imagem>
@@ -68,6 +78,8 @@ const Lista = (props) => {
             </div>
             </Bloco>                   
         </Layout>
+        
+        
     }) 
     
     const retorno = () => {
@@ -81,9 +93,9 @@ const Lista = (props) => {
     }
 
     return(
-        <div>            
+        <Fundo>            
             {retorno()}
-        </div>
+        </Fundo>
     )
 
 }
