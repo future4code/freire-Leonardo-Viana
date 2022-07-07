@@ -3,6 +3,13 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import styled from 'styled-components'
 
+const CampoVisao = styled.div`
+background-color: rgb(255,235,205);
+position: absolute;
+height: 100vh;
+width: 100vw;
+`
+
 const Layout = styled.div`
 background-color: orange;
 height: 60vh;
@@ -173,11 +180,11 @@ function App() {
   const [tela, setTela] = useState(0)
 
   const Match = () => {
-    setPego(true)    
+    setPego(true)
   }
 
   const Passo = () => {
-    setPego(false)  
+    setPego(false)
   }
 
   const getProfileToChoose = () => {
@@ -205,16 +212,12 @@ function App() {
       })
   }
 
-
   useEffect(() => {
     getProfileToChoose()
-    if(tela>0){
+    if (tela > 0) {
       choosePerson()
     }
   }, [variavel]);
-
-  
-
 
   const Clear = () => {
     axios.put('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/leonardo/clear')
@@ -239,8 +242,6 @@ function App() {
     setVariavel(variavel + 1)
     Passo()
   }
-
-
 
   const Inicio = () => {
     return <PaginaInicial>
@@ -293,7 +294,7 @@ function App() {
 
 
   return (
-    <div>
+    <CampoVisao>
       <Layout>
         <Header>
           <Titulo>Astromatch</Titulo>
@@ -310,7 +311,7 @@ function App() {
         <button onClick={() => { Clear() }}>Apagar tudo</button>
       </div>
 
-    </div>
+    </CampoVisao>
   );
 }
 
