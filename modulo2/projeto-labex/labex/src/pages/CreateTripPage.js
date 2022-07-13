@@ -34,7 +34,7 @@ h1{
 const Form = styled.div`
 margin: 30px; 
 width: 700px;
-height: 400px;
+height: 370px;
 border: 1px black solid;
 overflow: auto;
 display: flex;
@@ -46,7 +46,15 @@ input{
     width: 500px;    
     border-radius: 25px;
     overflow: auto;   
-    text-align: start;   
+    text-align: start;
+    border: 1px black solid ;
+}
+select{
+    margin: 15px;
+    padding: 10px;
+    width: 525px;    
+    border-radius: 25px;  
+    border: 1px black solid ;
 }
 `
 
@@ -73,6 +81,13 @@ function CreateTripPage() {
 
     const navigate = useNavigate()
 
+    const hoje = new Date()
+    const stringToday = hoje.getFullYear() + "-" +
+    ("0" + (hoje.getMonth() + 1)).substr(-2) + "-"
+    + ("0" + hoje.getDate()).substr(-2)
+
+    const planetas = ["Mercúrio","Vênus","Terra","Marte","Jupiter","Saturno","Urano","Netuno","Plutão"]
+
     return (
         <div>
             <Header>
@@ -83,15 +98,20 @@ function CreateTripPage() {
                     <h1>Criar Viagem</h1>
                 </Subtitulo>
                 <Form>
-                    <input placeholder='Nome'></input>
-                    <input placeholder='Escolha um Planeta'></input>
-                    <input type='date' min='{{getDate()}/{getMonth()}/{getFullTear()}}' placeholder=''></input>
-                    <input placeholder='Descrição'></input>
-                    <input type='number' placeholder='Duração em dias'></input>
+                    <input placeholder='Nome' pattern={"^.{5,}$"} title={"O nome da viagem deve ter no mínimo 5 caracteres"}></input>
+                    <select placeholder='Escolha um Planeta'>
+                        <option value={""}>Escolha um Planeta</option>
+                        {planetas.map((planeta) => {
+                            return <option value={planeta} key={planeta}>{planeta}</option>
+                        })}
+                    </select>
+                    <input type='date' min={stringToday} placeholder='Data'></input>
+                    <input placeholder='Descrição' pattern={"^.{30,}$"} title={"O nome deve ter no mínimo 30 caracteres"}></input>
+                    <input type='number' min={50} placeholder='Duração em dias'></input>
                 </Form>
                 <BlocoBotao>
                 <button onClick={() => goBack(navigate)}>Voltar</button>
-                <button>Criar viagem</button>
+                <button type='submit'>Criar viagem</button>
             </BlocoBotao>
             </Bloco>
             
