@@ -1,7 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { goBack, goToLoginPage } from '../routes/coordinator'
+import { useEffect, useState } from 'react'
 
 const Header = styled.div`
 background-color: black;
@@ -88,29 +90,73 @@ div{
 function TripDetailsPage() {
 
     const navigate = useNavigate()
+    const pathParams = useParams()
 
-    const goBack = () => {
-        navigate(-1)
+    const [detalhes, setDetalhes] = useState({})
+
+    useEffect(() => {
+        const token = localStorage.getItem("token")
+        if (token == null) {
+            console.log("Não está logado")
+            goToLoginPage(navigate)
+        }
+    })
+
+    useEffect(() => {
+        getTripDetail(pathParams.id)
+    }, [])
+
+    const getTripDetail = (id) => {
+        axios.get(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/leonardo-almeida-freire/trip/${id}`, {
+            headers: {
+                auth: localStorage.getItem("token")
+            }
+        }).then((res) => {
+            setDetalhes(res.data.trip)
+            console.log(detalhes)
+        }).catch((er) => {
+            console.log(er.repsonse)
+        })
     }
+
+    const condicaoPendente = () => {
+        if (typeof (detalhes.candidates) == 'object') {
+            return detalhes.candidates.map((candidatos) => {
+                return <li> {candidatos.name} </li>
+            })
+        }
+    }
+
+    const condicaoAprovados = () => {
+        if ((typeof (detalhes.approved) == 'object') && (detalhes.approved.lenght > 0)) {
+            return detalhes.approved.map((candidatos) => {
+                return <li> {candidatos.name} </li>
+            })
+        }
+    }
+
+
     return (
+
         <div>
+
             <Header>
                 <h1>LabeX</h1>
             </Header>
             <Bloco>
                 <Subtitulo>
-                    <h1>Titulo da viagem selecionada</h1>
+                    <h1>{detalhes.name}</h1>
                 </Subtitulo>
                 <Informação>
-                    <div>Nome:</div>
-                    <div>Descrição:</div>
-                    <div>Planeta:</div>
-                    <div>Duração:</div>
-                    <div>Data:</div>
+                    <div>Nome:{detalhes.name}</div>
+                    <div>Descrição:{detalhes.description}</div>
+                    <div>Planeta:{detalhes.planet}</div>
+                    <div>Duração:{detalhes.durationInDays}</div>
+                    <div>Data:{detalhes.date}</div>
                 </Informação>
-                
+
                 <BlocoBotao>
-                    <button onClick={goBack}>Voltar</button>
+                    <button onClick={() => goBack(navigate)}>Voltar</button>
                 </BlocoBotao>
                 <Lista>
                     <div>
@@ -118,16 +164,9 @@ function TripDetailsPage() {
                     </div>
                     <div>
                         <ul>
-                            <li>avrevwevwervwevwv</li>
-                            <li>bvwfvwfvvvwdvdwfvdfw</li>
-                            <li>bvtrebrbberbrbrbrebr</li>
-                            <li>bvtrebrbberbrbrbrebr</li>
-                            <li>bvtrebrbberbrbrbrebr</li>
-                            <li>bvtrebrbberbrbrbrebr</li>
-                            <li>bvtrebrbberbrbrbrebr</li>
-                            <li>bvtrebrbberbrbrbrebr</li>
+                            {condicaoPendente()}
                         </ul>
-                    </div>                    
+                    </div>
                 </Lista>
                 <Lista>
                     <div>
@@ -135,16 +174,9 @@ function TripDetailsPage() {
                     </div>
                     <div>
                         <ul>
-                            <li>avrevwevwervwevwv</li>
-                            <li>bvwfvwfvvvwdvdwfvdfw</li>
-                            <li>bvtrebrbberbrbrbrebr</li>
-                            <li>bvtrebrbberbrbrbrebr</li>
-                            <li>bvtrebrbberbrbrbrebr</li>
-                            <li>bvtrebrbberbrbrbrebr</li>
-                            <li>bvtrebrbberbrbrbrebr</li>
-                            <li>bvtrebrbberbrbrbrebr</li>
+                            {condicaoAprovados()}
                         </ul>
-                    </div>                    
+                    </div>
                 </Lista>
             </Bloco>
 

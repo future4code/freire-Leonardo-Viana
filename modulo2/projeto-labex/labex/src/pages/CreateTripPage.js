@@ -2,7 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
-import { goBack } from '../routes/coordinator'
+import { goBack, goToLoginPage } from '../routes/coordinator'
+import { useEffect, useState } from 'react'
 
 const Header = styled.div`
 background-color: black;
@@ -80,6 +81,14 @@ button{
 function CreateTripPage() {
 
     const navigate = useNavigate()
+
+    useEffect(() => {
+        const token = localStorage.getItem("token")
+        if (token == null) {
+            console.log("Não está logado")
+            goToLoginPage(navigate)
+        }
+    })
 
     const hoje = new Date()
     const stringToday = hoje.getFullYear() + "-" +

@@ -67,7 +67,7 @@ function HomePage() {
                 </div>
                 <BlocoBotao>
                     <button onClick={() => goToListTripPage(navigate)}>Ver lista de viagens</button>
-                    <button onClick={() => goToAdminHomePage(navigate)}>Área de administrador</button>
+                    <button onClick={() => goToLoginPage(navigate)}>Área de administrador</button>
                 </BlocoBotao>
             </Bloco>
         </div>

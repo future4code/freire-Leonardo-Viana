@@ -2,7 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
-import { goToHome } from '../routes/coordinator'
+import { goToAdminHomePage, goToHome } from '../routes/coordinator'
+import { useState, useEffect } from 'react'
 
 const Header = styled.div`
 background-color: black;
@@ -12,7 +13,7 @@ display: flex;
 align-items: center;
 h1{
     margin: 0px 20px;
-    font-size: xxx-large ;
+    font-size: xxx-large;
 }
 `
 
@@ -68,9 +69,50 @@ function LoginPage() {
 
     const navigate = useNavigate()
 
-    // const goBack = () => {
-    //     navigate("/")
-    // }
+    const [email, setEmail] = useState("")
+    const [senha, setSenha] = useState("")
+   
+
+    useEffect(() => {
+        const token = localStorage.getItem("token")
+        if(token == null) {
+            console.log("Não está logado")
+        } else {
+            goToAdminHomePage(navigate)
+        }
+    })
+
+    const onChangeEmail = (ev) => {
+        setEmail(ev.target.value)
+    }
+
+    const onChangeSenha = (ev) => {
+        setSenha(ev.target.value)
+    }
+
+    const onSubmit = () => {
+        console.log(email, senha)
+        const body = {
+            email: email,
+            password: senha
+        }
+        axios.post('https://us-central1-labenu-apis.cloudfunctions.net/labeX/leonardo-almeida-freire/login', body)
+        .then((res) => {
+            console.log("Ok", res.data)            
+            localStorage.setItem("token", res.data.token)
+            setEmail("")
+            setSenha("")
+        }).cath((er) => {
+            console.log(er.response)
+            alert("E-mail ou senha estão errados.")
+        })         
+    }
+
+   
+
+
+
+    
 
     return (
         <div>
@@ -82,12 +124,12 @@ function LoginPage() {
                     <h1>Login</h1>
                 </Subtitulo>
                 <BlocoInput>
-                    <input placeholder='E-mail'></input>
-                    <input placeholder='Senha'></input>
+                    <input type='email' placeholder='E-mail' onChange={onChangeEmail} value={email}></input>
+                    <input type='password' placeholder='Senha' onChange={onChangeSenha} value={senha}></input>
                 </BlocoInput>
                 <BlocoBotao>
                     <button onClick={() => goToHome(navigate)}>Voltar</button>
-                    <button>Entrar</button>
+                    <button onClick={onSubmit}>Entrar</button>
                 </BlocoBotao>
             </Bloco>
         </div>
