@@ -2,7 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
-import { goBack } from '../routes/coordinator'
+import { goBack, goToListTripPage } from '../routes/coordinator'
+import { useState, useEffect } from 'react'
 
 const Header = styled.div`
 background-color: black;
@@ -29,6 +30,10 @@ margin: 10vh 0px 20px 0px;
 h1{
     margin: 0;
 }
+`
+
+const Formulario = styled.form`
+text-align: center;
 `
 
 const Form = styled.div`
@@ -60,7 +65,7 @@ select{
 
 const BlocoBotao = styled.div`
 button{
-    margin: 0px 50px;  
+    margin: 0px 0px 30px 0px;  
     height: 30px;
     min-width: 80px;
     border-radius: 15px;
@@ -78,40 +83,61 @@ button{
 `
 
 function ApplicationFormPage() {
-
     const navigate = useNavigate()
+    const [form, setForm] = useState({ name: "", age: "", applicationText: "", profession: "", country: "" })
+
+    const onChange = (ev) => {
+        setForm({ ...form, [ev.target.name]: ev.target.value})
+    }
+
+    const applyToTrip = () => {
+        axios.post('https://us-central1-labenu-apis.cloudfunctions.net/labeX/leonardo-almeida-freire/trips/:id/apply', form)
+        .then((res) => {
+            console.log(res.data)
+        }).catch((er) => {
+            console.log(er.responsive)
+        })
+    }
+
+
 
 
     return (
         <div>
-        <Header>
-            <h1>LabeX</h1>
-        </Header>
-        <Bloco>
-            <Subtitulo>
-                <h1>Inscreva-se para uma viagem</h1>
-            </Subtitulo>
-            <Form>
-            <select placeholder='Escolha uma Viagem'>
-                    <option value={""}>Escolha uma Viagem</option>
-                   
-                </select>
-                <input placeholder='Nome' pattern={"^.{5,}$"} title={"O nome da viagem deve ter no mínimo 5 caracteres"}></input>                
-                <input type='number' min={18}  placeholder='Idade'></input>
-                <input placeholder='Texto de Candidatura' pattern={"^.{30,}$"} title={"O nome deve ter no mínimo 30 caracteres"}></input>
-                <input placeholder='Profissão'></input>
-                <select placeholder='Escolha um País'>
-                    <option value={""}>Escolha um País</option>
-                   
-                </select>
-            </Form>
-            <BlocoBotao>
-             <button onClick={() => goBack(navigate)}>Voltar</button>
-                <button>Enviar</button>
-        </BlocoBotao>
-        </Bloco>        
-    </div>
-      
+            <Header>
+                <h1>LabeX</h1>
+            </Header>
+            <Bloco>
+                <Subtitulo>
+                    <h1>Inscreva-se para uma viagem</h1>
+                </Subtitulo>
+                <Formulario onSubmit={applyToTrip}>
+                    <Form>
+                        <select placeholder='Escolha uma Viagem'>
+                            <option value={""}>Escolha uma Viagem</option>
+
+                        </select>
+                        <input name='name' value={form.name} placeholder='Nome' pattern={"^.{5,}$"} title={"O nome da viagem deve ter no mínimo 5 caracteres"} onChange={onChange} required></input>
+                        <input name='age' value={form.age} type='number' min={18} placeholder='Idade' onChange={onChange} required></input>
+                        <input name='applicationText' value={form.applicationText} placeholder='Texto de Candidatura' pattern={"^.{30,}$"} title={"O nome deve ter no mínimo 30 caracteres"} onChange={onChange} required></input>
+                        <input name='profession' value={form.profession} placeholder='Profissão' pattern={"^.{10,}$"} title={"O nome deve ter no mínimo 10 caracteres"} onChange={onChange} required></input>
+                        <select name='country' value={form.country} placeholder='Escolha um País' onChange={onChange} required>
+                            <option value={""}>Escolha um País</option>
+                            <option>a</option>
+
+                        </select>
+                    </Form>
+                    <BlocoBotao>
+                        <button type='submit'>Enviar</button>
+                    </BlocoBotao>
+                </Formulario>
+                <BlocoBotao>
+                    <button onClick={() => goToListTripPage(navigate)}>Voltar</button>
+                </BlocoBotao>
+
+            </Bloco>
+        </div>
+
     )
 }
 

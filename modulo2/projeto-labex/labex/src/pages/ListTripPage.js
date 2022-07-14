@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
@@ -44,7 +44,7 @@ justify-content: center;
 const Viagem = styled.div`
 margin: 30px; 
 width: 400px;
-height: 250px;
+min-height: 250px;
 border: 1px black solid;
 display: flex;
 flex-direction: column;
@@ -77,10 +77,43 @@ button{
 
 function ListTripPage() {
 
+    const [viagem, setViagem] = useState({})
+
     const navigate = useNavigate()
+
+    useEffect(() => {
+        getTrips()
+        console.log(viagem.trips)
+    }, [])
+
+    const getTrips = () => {
+        axios.get('https://us-central1-labenu-apis.cloudfunctions.net/labeX/leonardo-almeida-freire/trips')
+            .then((res) => {
+                console.log(res.data)
+                setViagem(res.data)
+            }).catch((er) => {
+                console.log(er.response)
+            })
+    }
+
+    const lista = () => {
+        //  if(typeof(viagem) == 'object' && viagem.length > 0) {
+        return (viagem.trips.map((a) => {
+            return <Viagem>
+                <div>Nome: {a.name}</div>
+                <div>Descrição: {a.description}</div>
+                <div>Planeta: {a.planet}</div>
+                <div>Duração: {a.durationInDays}</div>
+                <div>Data: {a.date}</div>
+            </Viagem>
+        }))
+    }
+
+
 
     return (
         <div>
+            {getTrips}
             <Header>
                 <h1>LabeX</h1>
             </Header>
@@ -89,44 +122,10 @@ function ListTripPage() {
                     <h1>Lista de Viagens</h1>
                 </Subtitulo>
                 <Lista>
-                    <Viagem>
-                        <div>teste</div>
-                        <div>teste</div>
-                        <div>teste</div>
-                        <div>teste</div>
-                        <div>teste</div>
-                    </Viagem>
-                    <Viagem>
-                        <div>teste</div>
-                        <div>teste</div>
-                        <div>teste</div>
-                        <div>teste</div>
-                        <div>teste</div>
-                    </Viagem>
-                    <Viagem>
-                        <div>teste</div>
-                        <div>teste</div>
-                        <div>teste</div>
-                        <div>teste</div>
-                        <div>teste</div>
-                    </Viagem>
-                    <Viagem>
-                        <div>teste</div>
-                        <div>teste</div>
-                        <div>teste</div>
-                        <div>teste</div>
-                        <div>teste</div>
-                    </Viagem>
-                    <Viagem>
-                        <div>teste</div>
-                        <div>teste</div>
-                        <div>teste</div>
-                        <div>teste</div>
-                        <div>teste</div>
-                    </Viagem>
+                    {lista()}
                 </Lista>
                 <BlocoBotao>
-                    <button onClick={() => goBack(navigate)}>Voltar</button>
+                    <button onClick={getTrips}>Voltar</button>
                     <button onClick={() => goToApplicationFormPage(navigate)}>Inscrever-se</button>
                 </BlocoBotao>
             </Bloco>
