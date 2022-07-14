@@ -85,18 +85,51 @@ button{
 function ApplicationFormPage() {
     const navigate = useNavigate()
     const [form, setForm] = useState({ name: "", age: "", applicationText: "", profession: "", country: "" })
+    const [viagens, setViagens] = useState("")
+    const [viagemId, setViagemId] = useState("")
+
+    useEffect(() => {
+        getTrips()
+        console.log(viagens)
+    },[])
+
+    useEffect(() => {        
+        console.log(viagens)
+    })
 
     const onChange = (ev) => {
         setForm({ ...form, [ev.target.name]: ev.target.value})
     }
 
-    const applyToTrip = () => {
-        axios.post('https://us-central1-labenu-apis.cloudfunctions.net/labeX/leonardo-almeida-freire/trips/:id/apply', form)
+    const onChangeViagens = (ev) => {
+        setViagens(ev.target.value)
+    }
+
+    const applyToTrip = (id) => {
+        axios.post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/leonardo-almeida-freire/trips/${id}/apply`, form)
         .then((res) => {
             console.log(res.data)
         }).catch((er) => {
             console.log(er.responsive)
         })
+    }
+
+    const getTrips = () => {
+        axios.get('https://us-central1-labenu-apis.cloudfunctions.net/labeX/leonardo-almeida-freire/trips')
+        .then((res) =>{
+            console.log(res.data.trips)
+            setViagemId(res.data.trips)
+        }).catch((er) => {
+            console.log(er.response)
+        })
+    }
+
+    const opcoes = () => {        
+        if (typeof(viagemId) == 'object') {
+            return viagemId.map((a) => {
+                return <option key={a.id} value={a.id}>{a.name}</option>
+            })
+        }
     }
 
 
@@ -111,11 +144,11 @@ function ApplicationFormPage() {
                 <Subtitulo>
                     <h1>Inscreva-se para uma viagem</h1>
                 </Subtitulo>
-                <Formulario onSubmit={applyToTrip}>
+                <Formulario onSubmit={() => applyToTrip(viagens)}>
                     <Form>
-                        <select placeholder='Escolha uma Viagem'>
+                        <select placeholder='Escolha uma Viagem' onChange={onChangeViagens} value={viagens} >
                             <option value={""}>Escolha uma Viagem</option>
-
+                            {opcoes()}
                         </select>
                         <input name='name' value={form.name} placeholder='Nome' pattern={"^.{5,}$"} title={"O nome da viagem deve ter no mínimo 5 caracteres"} onChange={onChange} required></input>
                         <input name='age' value={form.age} type='number' min={18} placeholder='Idade' onChange={onChange} required></input>

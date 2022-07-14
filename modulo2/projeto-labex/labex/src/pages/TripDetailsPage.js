@@ -113,7 +113,7 @@ function TripDetailsPage() {
             }
         }).then((res) => {
             setDetalhes(res.data.trip)
-            console.log(detalhes)
+            console.log(res.data.trip)
         }).catch((er) => {
             console.log(er.repsonse)
         })

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
-import { goBack, goToApplicationFormPage } from '../routes/coordinator'
+import { goBack, goToApplicationFormPage, goToHome } from '../routes/coordinator'
 
 const Header = styled.div`
 background-color: black;
@@ -82,8 +82,7 @@ function ListTripPage() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        getTrips()
-        console.log(viagem.trips)
+        getTrips()        
     }, [])
 
     const getTrips = () => {
@@ -97,7 +96,7 @@ function ListTripPage() {
     }
 
     const lista = () => {
-        //  if(typeof(viagem) == 'object' && viagem.length > 0) {
+         if(typeof(viagem.trips) == 'object' && viagem.trips.length > 0) {
         return (viagem.trips.map((a) => {
             return <Viagem>
                 <div>Nome: {a.name}</div>
@@ -108,12 +107,12 @@ function ListTripPage() {
             </Viagem>
         }))
     }
+}
 
 
 
     return (
-        <div>
-            {getTrips}
+        <div>            
             <Header>
                 <h1>LabeX</h1>
             </Header>
@@ -125,7 +124,7 @@ function ListTripPage() {
                     {lista()}
                 </Lista>
                 <BlocoBotao>
-                    <button onClick={getTrips}>Voltar</button>
+                    <button onClick={() => goToHome(navigate)}>Voltar</button>
                     <button onClick={() => goToApplicationFormPage(navigate)}>Inscrever-se</button>
                 </BlocoBotao>
             </Bloco>
