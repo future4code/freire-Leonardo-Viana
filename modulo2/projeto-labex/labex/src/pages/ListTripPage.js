@@ -3,6 +3,7 @@ import axios from 'axios'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { goBack, goToApplicationFormPage, goToHome } from '../routes/coordinator'
+import { BASE_URL } from '../constants/url'
 
 const Header = styled.div`
 background-color: black;
@@ -49,10 +50,11 @@ border: 1px black solid;
 display: flex;
 flex-direction: column;
 div{
+    display: inline-block;
     margin: 13px;
     font-size: large;
     font-weight: bold;
-    color: orange;    
+    color: black;    
 }
 `
 
@@ -86,7 +88,7 @@ function ListTripPage() {
     }, [])
 
     const getTrips = () => {
-        axios.get('https://us-central1-labenu-apis.cloudfunctions.net/labeX/leonardo-almeida-freire/trips')
+        axios.get(`${BASE_URL}/trips`)
             .then((res) => {
                 console.log(res.data)
                 setViagem(res.data)
@@ -97,8 +99,8 @@ function ListTripPage() {
 
     const lista = () => {
          if(typeof(viagem.trips) == 'object' && viagem.trips.length > 0) {
-        return (viagem.trips.map((a) => {
-            return <Viagem>
+        return (viagem.trips.map((a, id) => {
+            return <Viagem key={id}>
                 <div>Nome: {a.name}</div>
                 <div>Descrição: {a.description}</div>
                 <div>Planeta: {a.planet}</div>
@@ -108,8 +110,6 @@ function ListTripPage() {
         }))
     }
 }
-
-
 
     return (
         <div>            

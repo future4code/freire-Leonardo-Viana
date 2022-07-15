@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { goToAdminHomePage, goToHome } from '../routes/coordinator'
 import { useState, useEffect } from 'react'
+import { BASE_URL } from '../constants/url'
 
 const Header = styled.div`
 background-color: black;
@@ -33,7 +34,7 @@ h1{
 `
 
 const BlocoInput = styled.div`
-margin: 30px; 
+margin-top: 30px; 
 width: 700px;
 height: 100px;
 display: flex;
@@ -46,9 +47,13 @@ input{
 }
 `
 
+const Formulario = styled.form`
+text-align: center;
+`
+
 const BlocoBotao = styled.div`
 button{
-    margin: 0px 40px;  
+    margin-top: 15px;
     height: 30px;
     min-width: 80px;
     border-radius: 15px;
@@ -71,11 +76,11 @@ function LoginPage() {
 
     const [email, setEmail] = useState("")
     const [senha, setSenha] = useState("")
-   
+
 
     useEffect(() => {
         const token = localStorage.getItem("token")
-        if(token == null) {
+        if (token == null) {
             console.log("Não está logado")
         } else {
             goToAdminHomePage(navigate)
@@ -90,29 +95,37 @@ function LoginPage() {
         setSenha(ev.target.value)
     }
 
-    const onSubmit = () => {
+    const onSubmit = (e) => {
+        e.preventDefault()
         console.log(email, senha)
         const body = {
             email: email,
             password: senha
         }
-        axios.post('https://us-central1-labenu-apis.cloudfunctions.net/labeX/leonardo-almeida-freire/login', body)
-        .then((res) => {
-            console.log("Ok", res.data)            
-            localStorage.setItem("token", res.data.token)
-            setEmail("")
-            setSenha("")
-        }).cath((er) => {
-            console.log(er.response)
-            alert("E-mail ou senha estão errados.")
-        })         
+
+        if(email !== 'leonardo@hotmail.com') {
+            alert("Usuário não encontrado")
+        } else if (email == 'leonardo@hotmail.com' && senha !== '123456') {
+            alert("Senha incorreta")
+        }
+        
+        axios.post(`${BASE_URL}/login`, body)
+            .then((res) => {
+                localStorage.setItem("token", res.data.token)
+                goToAdminHomePage(navigate)
+                setEmail("")
+                setSenha("")
+            })
+            .cath((err) => {                
+                alert(err.response.data.message)
+            })
     }
 
-   
 
 
 
-    
+
+
 
     return (
         <div>
@@ -123,13 +136,17 @@ function LoginPage() {
                 <Subtitulo>
                     <h1>Login</h1>
                 </Subtitulo>
-                <BlocoInput>
-                    <input type='email' placeholder='E-mail' onChange={onChangeEmail} value={email}></input>
-                    <input type='password' placeholder='Senha' onChange={onChangeSenha} value={senha}></input>
-                </BlocoInput>
+                <Formulario onSubmit={onSubmit}>
+                    <BlocoInput>
+                        <input type='email' placeholder='E-mail' onChange={onChangeEmail} value={email} required></input>
+                        <input type='password' placeholder='Senha' onChange={onChangeSenha} value={senha} required></input>
+                    </BlocoInput>
+                    <BlocoBotao>
+                        <button type='submit'>Entrar</button>
+                    </BlocoBotao>
+                </Formulario>
                 <BlocoBotao>
                     <button onClick={() => goToHome(navigate)}>Voltar</button>
-                    <button onClick={onSubmit}>Entrar</button>
                 </BlocoBotao>
             </Bloco>
         </div>

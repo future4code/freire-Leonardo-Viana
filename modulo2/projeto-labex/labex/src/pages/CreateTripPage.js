@@ -4,6 +4,10 @@ import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { goBack, goToAdminHomePage, goToLoginPage } from '../routes/coordinator'
 import { useEffect, useState } from 'react'
+import { planetas } from '../constants/planets'
+import { BASE_URL } from '../constants/url'
+import { getTrips,  createTrip } from '../components/api'
+
 
 const Header = styled.div`
 background-color: black;
@@ -89,6 +93,7 @@ function CreateTripPage() {
     const [date,setDate] = useState()
     const [description,setDescription] = useState()
     const [durationInDays,setDurationInDays] = useState()
+    const [viagensDisponiveis, setViagensDisponiveis] = useState()
 
     const navigate = useNavigate()
 
@@ -121,15 +126,16 @@ function CreateTripPage() {
         }
     })
 
+    useEffect(() => {
+      getTrips(setViagensDisponiveis)
+    },[])
+
     const hoje = new Date()
     const stringToday = hoje.getFullYear() + "-" +
     ("0" + (hoje.getMonth() + 1)).substr(-2) + "-"
-    + ("0" + hoje.getDate()).substr(-2)
+    + ("0" + hoje.getDate()).substr(-2)    
 
-    const planetas = ["Mercúrio","Vênus","Terra","Marte","Jupiter","Saturno","Urano","Netuno","Plutão"]
-
-    const createTrip = () => {
-        const body = {
+    const body = {
             name: name,
             planet: planet,
             date: date,
@@ -137,27 +143,15 @@ function CreateTripPage() {
             durationInDays: durationInDays
         }
 
-        axios.post('https://us-central1-labenu-apis.cloudfunctions.net/labeX/leonardo-almeida-freire/trips', body, {
-            headers: {
-                auth: localStorage.getItem("token")
-            }
-        }).then((res) => {
-            console.log(res.data)
-            alert("Viagem cadastrada com sucesso")
-            setName("")
-            setPlanet("")
-            setDate("")
-            setDescription("")
-            setDurationInDays("")
-        }). catch((er) => {
-            console.log(er.response)
-            alert("Erro")
-        })
+    const criar = () => {
+        createTrip(body, navigate)
+
     }
+        
+
 
     return (
-        <div>
-            {console.log(name, planet, date, description, durationInDays)}
+        <div>            
             <Header>
                 <h1>LabeX</h1>
             </Header>
@@ -165,7 +159,7 @@ function CreateTripPage() {
                 <Subtitulo>
                     <h1>Criar Viagem</h1>
                 </Subtitulo>
-                <Formulario onSubmit={createTrip}>
+                <Formulario onSubmit={criar}>
                     <Form>
                     <input placeholder='Nome' pattern={"^.{5,}$"} title={"O nome da viagem deve ter no mínimo 5 caracteres"} onChange={onChangeName} value={name} required></input>
                     <select placeholder='Escolha um Planeta' onChange={onChangePlanet} value={planet} required>

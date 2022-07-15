@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { goBack, goToListTripPage } from '../routes/coordinator'
 import { useState, useEffect } from 'react'
+import { paises } from '../constants/countries'
+import { getTrips, applyToTrip } from '../components/api'
 
 const Header = styled.div`
 background-color: black;
@@ -89,48 +91,53 @@ function ApplicationFormPage() {
     const [viagemId, setViagemId] = useState("")
 
     useEffect(() => {
-        getTrips()
-        console.log(viagens)
-    },[])
+        getTrips(setViagemId)
+    }, [])
 
-    useEffect(() => {        
+    
+    useEffect(() => {
+        console.log(form)
         console.log(viagens)
+        console.log(viagemId)
     })
 
     const onChange = (ev) => {
-        setForm({ ...form, [ev.target.name]: ev.target.value})
+        setForm({ ...form, [ev.target.name]: ev.target.value })
     }
 
     const onChangeViagens = (ev) => {
         setViagens(ev.target.value)
     }
 
-    const applyToTrip = (id) => {
-        axios.post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/leonardo-almeida-freire/trips/${id}/apply`, form)
-        .then((res) => {
-            console.log(res.data)
-        }).catch((er) => {
-            console.log(er.responsive)
-        })
-    }
+    // const applyToTrip = (id) => {        
+    //     alert("Aplicação enviada com sucesso!")
+    //     axios.post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/leonardo-almeida-freire/trips/${id}/apply`, form)
+    //     .then((res) => {
+    //             console.log(res.data)
+    //             alert("teste")
+    //     }).catch((er) => {
+    //             console.log(er.responsive)
+    //         })
+    // }
 
-    const getTrips = () => {
-        axios.get('https://us-central1-labenu-apis.cloudfunctions.net/labeX/leonardo-almeida-freire/trips')
-        .then((res) =>{
-            console.log(res.data.trips)
-            setViagemId(res.data.trips)
-        }).catch((er) => {
-            console.log(er.response)
-        })
-    }
+    // const getTrips = () => {
+    //     axios.get('https://us-central1-labenu-apis.cloudfunctions.net/labeX/leonardo-almeida-freire/trips')
+    //         .then((res) => {
+    //             setViagemId(res.data.trips)
+    //         }).catch((er) => {
+    //             console.log(er.response)
+    //         })
+    // }
 
-    const opcoes = () => {        
-        if (typeof(viagemId) == 'object') {
+    const opcoes = () => {
+        if (typeof (viagemId) == 'object') {
             return viagemId.map((a) => {
                 return <option key={a.id} value={a.id}>{a.name}</option>
             })
         }
     }
+
+ 
 
 
 
@@ -144,7 +151,7 @@ function ApplicationFormPage() {
                 <Subtitulo>
                     <h1>Inscreva-se para uma viagem</h1>
                 </Subtitulo>
-                <Formulario onSubmit={() => applyToTrip(viagens)}>
+                <Formulario onSubmit={() => applyToTrip(viagens, form)}>
                     <Form>
                         <select placeholder='Escolha uma Viagem' onChange={onChangeViagens} value={viagens} >
                             <option value={""}>Escolha uma Viagem</option>
@@ -156,8 +163,9 @@ function ApplicationFormPage() {
                         <input name='profession' value={form.profession} placeholder='Profissão' pattern={"^.{10,}$"} title={"O nome deve ter no mínimo 10 caracteres"} onChange={onChange} required></input>
                         <select name='country' value={form.country} placeholder='Escolha um País' onChange={onChange} required>
                             <option value={""}>Escolha um País</option>
-                            <option>a</option>
-
+                            {paises.map((pais, id) => {
+                                return <option value={pais} key={id}>{pais}</option>
+                            })}
                         </select>
                     </Form>
                     <BlocoBotao>
