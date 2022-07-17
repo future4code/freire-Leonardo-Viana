@@ -88,12 +88,12 @@ button{
 
 function CreateTripPage() {
 
-    const [name,setName] = useState()
-    const [planet,setPlanet] = useState()
-    const [date,setDate] = useState()
-    const [description,setDescription] = useState()
-    const [durationInDays,setDurationInDays] = useState()
-    const [viagensDisponiveis, setViagensDisponiveis] = useState()
+    const [name,setName] = useState('')
+    const [planet,setPlanet] = useState('')
+    const [date,setDate] = useState('')
+    const [description,setDescription] = useState('')
+    const [durationInDays,setDurationInDays] = useState('')
+    const [viagensDisponiveis, setViagensDisponiveis] = useState('')
 
     const navigate = useNavigate()
 
@@ -144,8 +144,12 @@ function CreateTripPage() {
         }
 
     const criar = () => {
+        if(viagensDisponiveis.length < 6) {
+            alert("Viagem cadastrada com sucesso")
+        } else {
+            alert("Tem muitas viagens disponíveis, apague alguma")
+        }
         createTrip(body, navigate)
-
     }
         
 
@@ -161,7 +165,7 @@ function CreateTripPage() {
                 </Subtitulo>
                 <Formulario onSubmit={criar}>
                     <Form>
-                    <input placeholder='Nome' pattern={"^.{5,}$"} title={"O nome da viagem deve ter no mínimo 5 caracteres"} onChange={onChangeName} value={name} required></input>
+                    <input placeholder='Nome' pattern={"^.{5,}$"} maxLength={'30'} title={"O nome da viagem deve ter no mínimo 5 caracteres"} onChange={onChangeName} value={name} required></input>
                     <select placeholder='Escolha um Planeta' onChange={onChangePlanet} value={planet} required>
                         <option value={""}>Escolha um Planeta</option>
                         {planetas.map((planeta) => {
@@ -169,7 +173,7 @@ function CreateTripPage() {
                         })}
                     </select>
                     <input type='date' min={stringToday} placeholder='Data' onChange={onChangeDate} value={date} required></input>
-                    <input placeholder='Descrição' pattern={"^.{30,}$"} title={"O nome deve ter no mínimo 30 caracteres"} onChange={onChangeDescription} value={description} required></input>
+                    <input placeholder='Descrição' maxLength={'50px'} pattern={"^.{30,}$"} title={"O nome deve ter no mínimo 30 caracteres"} onChange={onChangeDescription} value={description} required></input>
                     <input type='number' min={50} placeholder='Duração em dias' onChange={onChangeDurationInDays} value={durationInDays} required></input>
                 </Form>
                 <BlocoBotao>                

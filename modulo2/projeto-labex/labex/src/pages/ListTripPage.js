@@ -44,14 +44,16 @@ justify-content: center;
 
 const Viagem = styled.div`
 margin: 30px; 
-width: 400px;
+width: 550px;
 min-height: 250px;
 border: 1px black solid;
 display: flex;
 flex-direction: column;
 div{
-    display: inline-block;
+    display: flex;
+    flex-wrap: wrap;
     margin: 13px;
+    max-width: 300px;
     font-size: large;
     font-weight: bold;
     color: black;    
@@ -85,7 +87,7 @@ function ListTripPage() {
 
     useEffect(() => {
         getTrips()        
-    }, [])
+    })
 
     const getTrips = () => {
         axios.get(`${BASE_URL}/trips`)

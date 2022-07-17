@@ -25,14 +25,16 @@ export const getTrips = (setar) => {
         })
 }
 
-export const applyToTrip = (id, form) => {
+export const applyToTrip = (id, body) => {
     alert("Aplicação enviada com sucesso!")
-    axios.post(`${BASE_URL}/trips/${id}/apply`, form)
+    
+    axios.post(`${BASE_URL}/trips/${id}/apply`, body)
         .then((res) => {
             console.log(res.data)            
         }).catch((er) => {
-            console.log(er.responsive)
+            console.log(er.response)
         })
+
 } 
 
 export const createTrip = (body,navigate) => {            

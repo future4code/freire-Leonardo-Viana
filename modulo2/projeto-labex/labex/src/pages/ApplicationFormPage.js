@@ -6,6 +6,7 @@ import { goBack, goToListTripPage } from '../routes/coordinator'
 import { useState, useEffect } from 'react'
 import { paises } from '../constants/countries'
 import { getTrips, applyToTrip } from '../components/api'
+import { BASE_URL } from '../constants/url'
 
 const Header = styled.div`
 background-color: black;
@@ -107,27 +108,7 @@ function ApplicationFormPage() {
 
     const onChangeViagens = (ev) => {
         setViagens(ev.target.value)
-    }
-
-    // const applyToTrip = (id) => {        
-    //     alert("Aplicação enviada com sucesso!")
-    //     axios.post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/leonardo-almeida-freire/trips/${id}/apply`, form)
-    //     .then((res) => {
-    //             console.log(res.data)
-    //             alert("teste")
-    //     }).catch((er) => {
-    //             console.log(er.responsive)
-    //         })
-    // }
-
-    // const getTrips = () => {
-    //     axios.get('https://us-central1-labenu-apis.cloudfunctions.net/labeX/leonardo-almeida-freire/trips')
-    //         .then((res) => {
-    //             setViagemId(res.data.trips)
-    //         }).catch((er) => {
-    //             console.log(er.response)
-    //         })
-    // }
+    }        
 
     const opcoes = () => {
         if (typeof (viagemId) == 'object') {
@@ -137,9 +118,11 @@ function ApplicationFormPage() {
         }
     }
 
- 
-
-
+    const enviar = (ev) => {
+        ev.preventDefault()
+        applyToTrip(viagens,form)
+        setForm({ name: "", age: "", applicationText: "", profession: "", country: "" })
+    }
 
 
     return (
@@ -151,7 +134,7 @@ function ApplicationFormPage() {
                 <Subtitulo>
                     <h1>Inscreva-se para uma viagem</h1>
                 </Subtitulo>
-                <Formulario onSubmit={() => applyToTrip(viagens, form)}>
+                <Formulario onSubmit={enviar}>
                     <Form>
                         <select placeholder='Escolha uma Viagem' onChange={onChangeViagens} value={viagens} >
                             <option value={""}>Escolha uma Viagem</option>
