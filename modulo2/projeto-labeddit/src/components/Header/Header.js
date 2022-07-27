@@ -36,7 +36,7 @@ margin-left: 34px;
 export const Header = () => {
     return(
         <Bloco>
-            <Back><img src={X}/></Back>
+            {/* <Back><img src={X}/></Back> */}
             <Image><img src={Logo}/></Image>
             <SignIn>Entrar</SignIn>
             

@@ -95,15 +95,18 @@ export const Like = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
-
 button{   
     color: #6F6F6F;
     border: 0;
+    border-radius: 15px;
     background-color: #FBFBFB;
     :hover{
         cursor: pointer;
     }
-    img{
+    :active{
+        background-color: green;
+    }  
+    svg{
         width: 14px;
         height: 14px;
     }
@@ -127,6 +130,9 @@ button{
     :hover{
         cursor: pointer;
     }
+    :active{
+        background-color: red;
+    } 
     img{
         width: 14px;
         height: 14px;
@@ -155,4 +161,28 @@ p{
     color: #6F6F6F;
     margin-left: 5px;
 }
+`
+
+export const Header = styled.div`
+padding: 0;
+width: 100%;
+height: 50px;
+background-color: #EDEDED;
+display: flex;
+justify-content: space-between;
+align-items: center;
+`
+
+export const Image = styled.div`
+width: 28px;
+height: 29px;
+margin: 10px 200px;
+position: absolute;
+`
+
+export const SignIn = styled.button`
+font-size: 18px;
+color: #4088CB;
+border: 1px solid #EDEDED;
+margin: 0px 30px;
 `

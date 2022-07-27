@@ -160,3 +160,38 @@ margin: 30px 0px;
 display: flex;
 flex-direction: column;
 `
+
+export const Back = styled.button`
+width: 25.5px;
+height: 24px;
+margin-left: 34px;
+border: 0;
+img{
+    width: 25.5px;
+    height: 24px; 
+}
+`
+
+export const Header = styled.div`
+padding: 0;
+width: 100%;
+height: 50px;
+background-color: #EDEDED;
+display: flex;
+justify-content: space-between;
+align-items: center;
+`
+
+export const Image = styled.div`
+width: 28px;
+height: 29px;
+margin: 10px 200px;
+position: absolute;
+`
+
+export const SignIn = styled.button`
+font-size: 18px;
+color: #4088CB;
+border: 1px solid #EDEDED;
+margin: 0px 30px;
+`
