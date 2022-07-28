@@ -21,6 +21,7 @@ const FeedPage = () => {
         GetPosts(setPost)
         if(localStorage.getItem("token") == null) {
             goToLoginPage(navigate)
+            window.location.reload()
         }
     })
 

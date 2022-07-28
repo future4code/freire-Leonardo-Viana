@@ -64,6 +64,7 @@ margin: 15px 0px;
 export const Botao = styled.button`
 width: 365px;
 height: 51px;
+margin-bottom: 15px;
 border-radius: 27px;
 color: #FE7E02;
 border: 1px solid #FE7E02;

@@ -170,6 +170,9 @@ img{
     width: 25.5px;
     height: 24px; 
 }
+:hover{
+    cursor: pointer;
+}
 `
 
 export const Header = styled.div`
@@ -194,4 +197,7 @@ font-size: 18px;
 color: #4088CB;
 border: 1px solid #EDEDED;
 margin: 0px 30px;
+:hover{
+    cursor: pointer;
+}
 `

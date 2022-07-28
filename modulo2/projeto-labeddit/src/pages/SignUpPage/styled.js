@@ -50,7 +50,7 @@ border: 1px solid #C4C4C4;
 
 export const Botao = styled.button`
 background-image: linear-gradient(to right, #FF6489, #F9B24E);
-margin-top: 55px;
+margin: 55px 0px;
 width: 365px;
 height: 51px;
 border-radius: 27px;
@@ -84,4 +84,5 @@ font-size: 18px;
 color: #4088CB;
 border: 1px solid #EDEDED;
 margin: 0px 30px;
+background-color: #EDEDED;
 `

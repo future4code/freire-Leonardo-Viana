@@ -43,7 +43,7 @@ export const CreatePost = (body) => {
         }
     }).then((res) => {
         console.log(res.data)
-        window.Location.reload()
+        window.location.reload()
     }).catch((err) => {
         console.log(err.response)
     })
@@ -61,6 +61,20 @@ export const CreatePostVote = (id, body) => {
     })
 }
 
+
+export const CreateCommentVote = (id, body) => {
+    axios.post(`${BASE_URL}comments/${id}/votes`, body, {
+        headers: {
+            "Authorization": localStorage.getItem("token")
+        }
+    }).then((res) => {
+        console.log(res.data)
+    }).catch((err) => {
+        console.log(err.response)
+    })
+}
+
+
 export const GetPostComments = (id, estado) => {
     axios.get(`${BASE_URL}posts/${id}/comments`, {
         headers: {
@@ -68,6 +82,19 @@ export const GetPostComments = (id, estado) => {
         }
     }).then((res) => {       
         estado(res.data)
+    }).catch((err) => {
+        console.log(err.response)
+    })
+}
+
+export const CreateComment = (body, id) => {
+    axios.post(`${BASE_URL}posts/${id}/comments`, body, {
+        headers: {
+            "Authorization": localStorage.getItem("token")
+        }
+    }).then((res) => {
+        console.log(res.data)
+        window.location.reload()                      
     }).catch((err) => {
         console.log(err.response)
     })

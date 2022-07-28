@@ -16,14 +16,11 @@ const LoginPage = () => {
     const [email, setEmail] = useState("")
     const [senha, setSenha] = useState("")
 
-    // useEffect(() => {
-    //     const token = localStorage.getItem("token")
-    //     if (token == null) {
-    //         console.log("Não está logado")
-    //     } else {
-    //         goToFeedPage(navigate)
-    //     }
-    // })
+    useEffect(() => {        
+        if (localStorage.getItem("token") !== null) {
+            goToFeedPage(navigate)
+        } 
+    })
     
     const Logar = (ev) => {   
         ev.preventDefault()    
