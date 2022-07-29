@@ -10,6 +10,7 @@ import X from "../../assets/x.png"
 import Logo from "../../assets/logo-header.png"
 import { goToFeedPage, goToLoginPage } from "../../routes/coordinator";
 import { Logout } from "../../components/Logout/logout";
+import "./styled.css"
 
 
 const DetailsPostPage = () => {
@@ -19,11 +20,12 @@ const DetailsPostPage = () => {
     const [post, setPost] = useState()
     const [comentario, setComentario] = useState()
     const [mensagem, setMensagem] = useState()
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         GetPosts(setPost)
         GetPostComments(pathParams.id, setComentario)
-        if(localStorage.getItem("token") == null) {
+        if (localStorage.getItem("token") == null) {
             goToLoginPage(navigate)
             window.location.reload()
         }
@@ -66,9 +68,16 @@ const DetailsPostPage = () => {
         let body = {
             body: mensagem
         }
-        CreateComment(body, pathParams.id)
-        // setMensagem('')
+        CreateComment(body, pathParams.id, setIsLoading)
+        setMensagem('')
 
+    }
+
+    const LoadingSpinner = () => {
+        return <div className="spinner-container-detail">
+            <div className="loading-spinner-detail">
+            </div>
+        </div>
     }
 
     const formatacaoPost = () => {
@@ -103,11 +112,11 @@ const DetailsPostPage = () => {
                 <Conteudo>{a.body}</Conteudo>
                 <Reactions>
                     <Like>
-                        <button onClick={() => {CurtirComment(a.id)}}><img src={Up} /></button>
+                        <button onClick={() => { CurtirComment(a.id) }}><img src={Up} /></button>
                         <p><b>{a.voteSum}</b></p>
                     </Like>
                     <Dislike>
-                        <button onClick={() => {DescurtirComment(a.id)}}><img src={Down} /></button>
+                        <button onClick={() => { DescurtirComment(a.id) }}><img src={Down} /></button>
                     </Dislike>
                 </Reactions>
             </Post>
@@ -125,15 +134,15 @@ const DetailsPostPage = () => {
             </Header>
             <Bloco>
                 <Postagem>
-                    {formatacaoPost()}
+                    {post ? formatacaoPost() : LoadingSpinner()}
                 </Postagem>
                 <Form onSubmit={Comentar}>
                     <Texto placeholder="Adicionar comentário" onChange={onChangeMensagem} value={mensagem}></Texto>
-                    <Botao type="submit">Responder</Botao>
+                    <Botao type="submit">{isLoading ? LoadingSpinner() : <>Responder</>}</Botao>
                 </Form>
                 <Linha></Linha>
                 <Respostas>
-                    {formatacaoComentario()}
+                    {comentario ? formatacaoComentario() : LoadingSpinner()}
                 </Respostas>
 
             </Bloco>

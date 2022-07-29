@@ -29,6 +29,9 @@ font-size: 18px;
 font-family: "IBM Plex Sans";
 font-weight: 300;
 font-style: normal;
+@media (max-width: 400px) {
+  width: 330px;
+}
 `
 
 export const Botao = styled.button`
@@ -45,6 +48,9 @@ font-weight: 300;
 font-style: normal;
 :hover{
     cursor: pointer;
+}
+@media (max-width: 400px) {
+  width: 350px;
 }
 `
 
@@ -70,6 +76,9 @@ background-color: #FBFBFB;
 border: 1px solid #E0E0E0;
 flex-wrap: wrap;
 margin-bottom: 10px;
+@media (max-width: 400px) {
+  width: 340px;
+}
 `
 
 export const Remetente = styled.p`
@@ -97,14 +106,15 @@ justify-content: center;
 align-items: center;
 button{   
     color: #6F6F6F;
-    border: 0;
+    border: 2px solid #FBFBFB ;
     border-radius: 15px;
     background-color: #FBFBFB;
     :hover{
         cursor: pointer;
     }
     :active{
-        background-color: green;
+        background-color: #90ee90;       
+        border: 2px solid white;
     }  
     svg{
         width: 14px;
@@ -125,13 +135,15 @@ align-items: center;
 margin: 0px 20px;
 button{   
     color: #6F6F6F;
-    border: 0;
-    background-color:  #FBFBFB;
+    border: 2px solid #FBFBFB;
+    border-radius: 15px;
+    background-color: #FBFBFB;
     :hover{
         cursor: pointer;
     }
     :active{
-        background-color: red;
+        background-color: #ff2400;       
+        border: 2px solid white;
     } 
     img{
         width: 14px;
@@ -169,22 +181,20 @@ width: 100%;
 height: 50px;
 background-color: #EDEDED;
 display: flex;
-justify-content: space-between;
+justify-content: space-around;
 align-items: center;
 `
 
 export const Image = styled.div`
 width: 28px;
 height: 29px;
-margin: 10px 200px;
-position: absolute;
 `
 
 export const SignIn = styled.button`
 font-size: 18px;
 color: #4088CB;
 border: 1px solid #EDEDED;
-margin: 0px 30px;
+background-color: #EDEDED;
 :hover{
     cursor: pointer;
 }

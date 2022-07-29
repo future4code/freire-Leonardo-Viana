@@ -23,6 +23,9 @@ background-color: #FBFBFB;
 border: 1px solid #E0E0E0;
 flex-wrap: wrap;
 margin-bottom: 10px;
+@media (max-width: 400px) {
+  width: 340px;
+}
 `
 
 export const Remetente = styled.p`
@@ -48,21 +51,25 @@ export const Like = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
-
 button{   
     color: #6F6F6F;
-    border: 0;
+    border: 2px solid #FBFBFB ;
+    border-radius: 15px;
     background-color: #FBFBFB;
     :hover{
         cursor: pointer;
     }
-    img{
+    :active{
+        background-color: #90ee90;       
+        border: 2px solid white;
+    }  
+    svg{
         width: 14px;
         height: 14px;
     }
 }
 p{
-    font-size: 10px;
+    font-size: 10px;    
     color: #6F6F6F;
     margin-left: 5px;
 }
@@ -75,11 +82,16 @@ align-items: center;
 margin: 0px 20px;
 button{   
     color: #6F6F6F;
-    border: 0;
-    background-color:  #FBFBFB;
+    border: 2px solid #FBFBFB;
+    border-radius: 15px;
+    background-color: #FBFBFB;
     :hover{
         cursor: pointer;
     }
+    :active{
+        background-color: #ff2400;       
+        border: 2px solid white;
+    } 
     img{
         width: 14px;
         height: 14px;
@@ -128,6 +140,9 @@ font-size: 18px;
 font-family: "IBM Plex Sans";
 font-weight: 300;
 font-style: normal;
+@media (max-width: 400px) {
+  width: 330px;
+}
 `
 
 export const Botao = styled.button`
@@ -144,6 +159,9 @@ font-weight: 300;
 font-style: normal;
 :hover{
     cursor: pointer;
+}
+@media (max-width: 400px) {
+  width: 340px;
 }
 `
 
@@ -164,8 +182,8 @@ flex-direction: column;
 export const Back = styled.button`
 width: 25.5px;
 height: 24px;
-margin-left: 34px;
 border: 0;
+background-color: #EDEDED;
 img{
     width: 25.5px;
     height: 24px; 
@@ -181,22 +199,20 @@ width: 100%;
 height: 50px;
 background-color: #EDEDED;
 display: flex;
-justify-content: space-between;
+justify-content: space-around;
 align-items: center;
 `
 
 export const Image = styled.div`
 width: 28px;
 height: 29px;
-margin: 10px 200px;
-position: absolute;
 `
 
 export const SignIn = styled.button`
 font-size: 18px;
 color: #4088CB;
 border: 1px solid #EDEDED;
-margin: 0px 30px;
+background-color: #EDEDED;
 :hover{
     cursor: pointer;
 }

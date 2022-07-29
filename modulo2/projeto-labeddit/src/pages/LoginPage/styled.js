@@ -15,6 +15,9 @@ export const Titulo = styled.div`
 width: 152px;
 height: 142px;
 margin-top: 135px;
+@media (max-width: 400px) {
+  margin-top: 50px;
+}
 `
 
 export const Subtitulo = styled.div`
@@ -77,3 +80,4 @@ font-style: normal;
     cursor: pointer;
    }
 `
+

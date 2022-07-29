@@ -3,24 +3,28 @@ import axios from "axios"
 import { goToFeedPage } from "../routes/coordinator";
 
 
-export const Login = (body, navigate) => {
+export const Login = (body, navigate, setIsLoading) => {
+    setIsLoading(true)
     axios.post(`${BASE_URL}users/login`, body)
         .then((res) => {
             localStorage.setItem("token", res.data.token)
             goToFeedPage(navigate)
-        }).catch((err) => {
-            console.log(err.response)
+            setIsLoading(false)
+        }).catch((err) => {           
             alert("Email ou senha incorreta")
+            setIsLoading(false)
         })
 }
 
-export const SignUp = (body, navigate) => {
+export const SignUp = (body, navigate, setIsLoading) => {
+    setIsLoading(true)
     axios.post(`${BASE_URL}users/signup`, body)
         .then((res) => {
             localStorage.setItem("token", res.data.token)
             goToFeedPage(navigate)
-        }).catch((err) => {
-            console.log(err.response)
+            setIsLoading(false)
+        }).catch((err) => {            
+            setIsLoading(false)
         })
 }
 
@@ -36,16 +40,17 @@ export const GetPosts = (estado) => {
     })
 }
 
-export const CreatePost = (body) => {
+export const CreatePost = (body, setIsLoading) => {
+    setIsLoading(true)
     axios.post(`${BASE_URL}posts`, body, {
         headers: {
             "Authorization": localStorage.getItem("token")
         }
-    }).then((res) => {
-        console.log(res.data)
+    }).then((res) => {       
         window.location.reload()
-    }).catch((err) => {
-        console.log(err.response)
+        setIsLoading(false)
+    }).catch((err) => {       
+        setIsLoading(false)
     })
 }
 
@@ -87,16 +92,17 @@ export const GetPostComments = (id, estado) => {
     })
 }
 
-export const CreateComment = (body, id) => {
+export const CreateComment = (body, id, setIsLoading) => {
+    setIsLoading(true)
     axios.post(`${BASE_URL}posts/${id}/comments`, body, {
         headers: {
             "Authorization": localStorage.getItem("token")
         }
-    }).then((res) => {
-        console.log(res.data)
-        window.location.reload()                      
-    }).catch((err) => {
-        console.log(err.response)
+    }).then((res) => {       
+        window.location.reload()
+        setIsLoading(false)                      
+    }).catch((err) => {       
+        setIsLoading(false)
     })
 }
 

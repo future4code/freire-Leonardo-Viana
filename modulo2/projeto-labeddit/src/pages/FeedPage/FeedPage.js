@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { CreatePost, CreatePostVote, GetPosts } from "../../services/api";
 import { goToDetailPostPage, goToLoginPage } from "../../routes/coordinator";
 import Logo from "../../assets/logo-header.png"
-import { Logout } from "../../components/Logout/logout" 
+import { Logout } from "../../components/Logout/logout"
+import "./styled.css" 
 
 
 const FeedPage = () => {
@@ -16,6 +17,7 @@ const FeedPage = () => {
 
     const [post, setPost] = useState()
     const [mensagem, setMensagem] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         GetPosts(setPost)
@@ -36,7 +38,7 @@ const FeedPage = () => {
             title: 'PostagemX',
             body: mensagem
         }
-        CreatePost(body)
+        CreatePost(body, setIsLoading)
         setMensagem('')
     }
 
@@ -53,6 +55,13 @@ const FeedPage = () => {
             direction: -1
         }
         CreatePostVote(id, body)
+    }
+
+    const LoadingSpinner = () => {
+        return <div className="spinner-container-feed">
+        <div className="loading-spinner-feed">
+        </div>
+      </div>
     }
 
     const formatacaoPosts = () => {
@@ -86,11 +95,11 @@ const FeedPage = () => {
             <Bloco>
                 <Form onSubmit={Postar}>
                     <Texto placeholder="Escreva seu post..." onChange={onChangeMensagem} value={mensagem}></Texto>
-                    <Botao>Postar</Botao>
+                    <Botao>{isLoading ? LoadingSpinner() : <>Postar</>  }</Botao>
                 </Form>
                 <Linha></Linha>
                 <Feed>
-                    {formatacaoPosts()}
+                    {post ? formatacaoPosts() : LoadingSpinner() }
                 </Feed>
 
             </Bloco>
