@@ -6,8 +6,7 @@ LabeX<br/><br/>
 <p align="center">
   <a href="#Tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
    <a href="#Projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#Instalação">Instalação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#Imagens">Imagens</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;  
+  <a href="#Instalação">Instalação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;    
 </p>
 
 <a id="Tecnologias"></a>
@@ -21,6 +20,8 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 <a id="Projeto"></a>
 ## 💻 Projeto
+
+Este projeto foi desenvolvido com base no curso Web Full Stack Integral da Labenu. Esta aplicação consiste em uma plataforma de Marketplace baseada no site GetNinjas. O projeto possui duas áreas principais separadas no site Área Administrativa e Lista de Viagens, listagem de viagens, página de detalhes de cada serviço, e formulário  onde é possível se inscrever para cada viagem.
  
   
 <a id="Instalação"></a>
@@ -33,13 +34,4 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 5. Quando acabar, rode o comando **npm run start**;
 6. Verifique se uma janela do seu navegador abriu, mostrando a página do projeto.
 
-<a id="Imagens"></a>
-## 🖼️ Imagens
 
-| Tela Inicial  | Gerenciamento de Viagens | Detalhes | 
-|---|---|---|
-| ![Tela Inicial](https://im.ge/i/unGpmP) | ![Gerenciamento de Viagens](https://im.ge/i/unGnof) | ![Detalhes](https://im.ge/i/uneMa0) | 
-
-| Criar Viagem | Lista de Viagens | Formulário de Cadastro | 
-|---|---|---|
-| ![Criar Viagem](https://im.ge/i/unGBbr) | ![Lista de Viagens](https://im.ge/i/screenshot-6.uneX1L) | ![Formulário de Cadastro](https://im.ge/i/uneOhJ) | 
