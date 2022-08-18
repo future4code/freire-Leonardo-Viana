@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "56758618-3d67-4f2e-a5eb-2379484697be",
+		"name": "Intro API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21554856"
+	},
+	"item": [
+		{
+			"name": "getFazeresId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3003/afazeres/:userId",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"afazeres",
+						":userId"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteFazerId",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "id",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3003/del/:userId",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"del",
+						":userId"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editFazer",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "id",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"completed\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3003/edit/:userId",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"edit",
+						":userId"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addFazer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "id",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"\",\r\n    \"completed\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3003/edit/:userId",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"edit",
+						":userId"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCompleted",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3003/completed",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"completed"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
