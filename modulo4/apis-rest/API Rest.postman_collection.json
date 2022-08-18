@@ -1,0 +1,66 @@
+{
+	"info": {
+		"_postman_id": "11fd5539-d4ca-421c-ac33-1c847ad2a1ed",
+		"name": "API Rest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21554856"
+	},
+	"item": [
+		{
+			"name": "Exercicio 1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3003/users?type=ADMIN&search=a",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "ADMIN"
+						},
+						{
+							"key": "search",
+							"value": "a"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Exercicio 4",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Rodolfo\",\r\n    \"email\": \"rodolfo@email.com\",\r\n    \"type\": \"NORMAL\",\r\n    \"age\": 21\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3003/users/add",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"users",
+						"add"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
