@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "82b410fe-4fac-46fc-ad51-2464ceb058dc",
+		"name": "IWFS: Sistema Bancário",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21554856"
+	},
+	"item": [
+		{
+			"name": "createAccount",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Rafaela\",\r\n    \"CPF\": \"333.333.333-33\",\r\n    \"dataDeNascimento\": \"01/01/1995\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3003/bank/users/create-account",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"bank",
+						"users",
+						"create-account"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAccounts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3003/bank/users",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"bank",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getSaldo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3003/bank/users/saldo?CPF",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"bank",
+						"users",
+						"saldo"
+					],
+					"query": [
+						{
+							"key": "CPF",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editSaldo",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:3003/bank/users/saldo/edit?nome&CPF",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"bank",
+						"users",
+						"saldo",
+						"edit"
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": null
+						},
+						{
+							"key": "CPF",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postPay",
+			"request": {
+				"method": "POST",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "postTransfer",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
