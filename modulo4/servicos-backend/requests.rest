@@ -1,0 +1,10 @@
+GET http://localhost:3003/endereco/03380030
+
+###
+post https://cep-labenu.herokuapp.com/user/05424150
+
+###
+post http://localhost:3003/user/03380030?numero=159&complemento=Casa 2
+
+###
+GET http://localhost:3003/list
