@@ -5,14 +5,18 @@ import { addUser } from "./endpoints/addUsers";
 import { getAllProducts } from "./endpoints/getAllProducts";
 import { getProductById } from "./services/getProductById";
 import axios from 'axios'
+import { getPurchasesByUser } from "./endpoints/getPurchasesByUsers";
+import { getAllUsers } from "./endpoints/getAllUsers";
 
 app.post("/users", addUser)
 app.post("/products", addProduct)
 app.get("/products", getAllProducts)
+app.get("/users/:user_id/purchases", getPurchasesByUser)
+app.get("/users", getAllUsers)
 
 
 
-console.log(getProductById("1662041684323", 3))
+
 
 
 const server = app.listen(process.env.PORT || 3003, () => {
