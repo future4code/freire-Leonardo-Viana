@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-const connection = knex({
+export const connection = knex({
     client: 'mysql',
     connection: {
         host: process.env.DB_HOST,
@@ -15,4 +15,18 @@ const connection = knex({
     }
 })
 
-export default connection
+const userTableName = "User";
+
+export const createUser = async (
+    id: string,
+    email: string,
+    password: string) => {
+    await connection
+        .insert({
+            id,
+            email,
+            password,
+        })
+        .into(userTableName);
+};
+
