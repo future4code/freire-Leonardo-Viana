@@ -1,7 +1,9 @@
 import * as jwt from 'jsonwebtoken'
 
 export interface AuthenticationData {
-    id: string
+    id: string,
+    name: string,
+    email: string
 }
 
 export class Authenticator {

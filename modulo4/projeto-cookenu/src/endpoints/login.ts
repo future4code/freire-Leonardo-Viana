@@ -23,12 +23,12 @@ export async function login(req: Request, res: Response) {
         const passwordIsCorrect = await hashManager.compare(password, findUser.getPassword())
 
         const authenticator = new Authenticator()
-        const token = authenticator.generate({id: findUser.getId()})
+        const token = authenticator.generate({id: findUser.getId(), name: findUser.getName(), email: findUser.getEmail()})
         
         if(!passwordIsCorrect) {
             res.status(401).send("Email ou senha incorretos")
         } else {
-            res.status(200).send({message: "Usuário logado com sucesso", token})
+            res.status(200).send({message: "Usuário logado com sucesso", access_token: token})
         } 
 
         

@@ -30,9 +30,9 @@ export async function signUp(req: Request, res: Response) {
         await userDatabase.createUser(user)
 
         const authenticator = new Authenticator()
-        const token = authenticator.generate({id})
+        const token = authenticator.generate({id, name, email})
 
-        res.status(200).send({message: "Usuário criado com sucesso", token})
+        res.status(200).send({message: "Usuário criado com sucesso", access_token: token})
         
     } catch (error: any) {
         res.status(400).send(error.message)        
