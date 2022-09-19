@@ -1,0 +1,52 @@
+# @name signup
+
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+   "name": "Julia",   
+   "email": "julia@email.com" ,
+   "password": "123julia123"
+}
+
+###
+
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{     
+   "email": "julia@email.com" ,
+   "password": "123julia123"
+}
+
+###
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliNjYwZTY3LWE2MDQtNDY0Yy05ZjBiLWQ5NWQ1ZmRhYzA0MiIsIm5hbWUiOiJMZW9uYXJkbyIsImVtYWlsIjoibGVvbmFyZG9AZW1haWwuY29tIiwiaWF0IjoxNjYzMjQ5MDI5LCJleHAiOjE2NjMzMzU0Mjl9.f9fBOeL-EGQ1wKKab8eJipDprmsGOTg9tMfSpMTqY5s
+
+GET http://localhost:3003/user/profile
+Authorization: {{token}}
+
+
+###
+
+@token1 = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFmMWNkNTE1LTcxMGEtNDdjMC1iMDRiLWVmMDY4OWRjYmJhNyIsIm5hbWUiOiJKdWxpYSIsImVtYWlsIjoianVsaWFAZW1haWwuY29tIiwiaWF0IjoxNjYzMjQ5ODI3LCJleHAiOjE2NjMzMzYyMjd9.BREr8ivbNnkxmQryjo0ov9HdZjhXp3qF6STrKfdEJno
+
+GET http://localhost:3003/user/9b660e67-a604-464c-9f0b-d95d5fdac042
+Authorization: {{token1}}
+
+
+
+###
+POST http://localhost:3003/recipe
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+   "title":"Bolo",
+   "description":"Bolo de cenoura com cobertura de chocolate" 
+}
+
+###
+GET http://localhost:3003/recipe/e1c379a9-089f-4013-bf5a-ec1756637a7e
+Authorization: {{token}}
+
