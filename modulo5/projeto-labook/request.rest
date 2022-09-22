@@ -1,0 +1,28 @@
+POST http://localhost:3003/users/signup
+Content-Type: application/json
+
+{
+    "name": "Julia",
+    "email": "julia@email.com",
+    "password": "123julia123"
+}
+
+###
+
+POST http://localhost:3003/users/login 
+Content-Type: application/json
+
+{
+    "email": "leonardo@email.com",
+    "password": "123leonardo123"
+}
+
+###
+
+POST http://localhost:3003/posts/create
+Content-Type: application/json
+
+{
+    "content": "Teste",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMzNjZlY2NiLTg0MDItNDZhZi04OTRjLWY2MDkxYzA0OTU3YyIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjM4NjUzNzgsImV4cCI6MTY2Mzk1MTc3OH0.8zuEzV4aq8OZ3a3CyahOcgUOQ-JE24iRCFuH-Ajrq3Y"
+}
