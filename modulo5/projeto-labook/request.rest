@@ -23,6 +23,16 @@ POST http://localhost:3003/posts/create
 Content-Type: application/json
 
 {
-    "content": "Teste",
+    "content": "Teste para apagar",
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMzNjZlY2NiLTg0MDItNDZhZi04OTRjLWY2MDkxYzA0OTU3YyIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjM4NjUzNzgsImV4cCI6MTY2Mzk1MTc3OH0.8zuEzV4aq8OZ3a3CyahOcgUOQ-JE24iRCFuH-Ajrq3Y"
+}
+
+###
+
+DELETE http://localhost:3003/posts/delete 
+Content-Type: : application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMzNjZlY2NiLTg0MDItNDZhZi04OTRjLWY2MDkxYzA0OTU3YyIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjM4NjUzNzgsImV4cCI6MTY2Mzk1MTc3OH0.8zuEzV4aq8OZ3a3CyahOcgUOQ-JE24iRCFuH-Ajrq3Y",
+    "id": "7401fb61-1e72-4c80-be29-a62fe5ffe504"
 }

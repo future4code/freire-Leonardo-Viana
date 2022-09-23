@@ -1,5 +1,6 @@
+import { BaseDatabase } from "../database/BaseDatabase"
 import { PostDatabase } from "../database/PostDatabase"
-import { ICreatePostDTO, Post } from "../models/Post"
+import { ICreatePostDTO, IDeletePostDTO, IGetAllPostsDTO, Post } from "../models/Post"
 import { Authenticator } from "../services/Authenticator"
 import { IdGenerator } from "../services/IdGenerator"
 
@@ -33,5 +34,33 @@ export class PostBusiness {
 
        return "Post criado com sucesso"
     }
+
+
+    public getAllPosts = async (input: IGetAllPostsDTO) => {
+        const token = input.token
+
+        const tokenData = this.authenticator.getTokenPayload(token)
+    }
+
+
+    public deletePost = async (input: IDeletePostDTO) => {
+        const token = input.token
+        const id = input.id
+
+        const tokenData = this.authenticator.getTokenPayload(token)
+
+        // const postDB = await this.postDatabase.findById(id)
+
+        // if (!postDB) {
+        //     throw new Error("Post não encontrado")
+        // }
+
+        await this.postDatabase.deletePost(id)
+
+        return "Post deletado com sucesso"
+    }
+
+
+
 
 }

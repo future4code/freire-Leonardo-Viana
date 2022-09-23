@@ -56,3 +56,12 @@ export interface ICreatePostDTO {
     content: string,
     token: string | undefined
 }
+
+export interface IGetAllPostsDTO {
+    token: string
+}
+
+export interface IDeletePostDTO {
+    token: string,
+    id: string
+}
